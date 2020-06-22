@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">監視器遠端控制</string>
+    <string name="take_picture">take a picture</string>
+    <string name="processing">Processing...</string>
+</resources>
