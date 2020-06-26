@@ -141,10 +141,8 @@ public class MainActivity extends AppCompatActivity {
 
                     try {
                         if(angle + deltaX < 0) {
-                            sampleClient.publish(topicAngle, new MqttMessage(String.valueOf(0).getBytes()));
                             tvAngle.setText("0");
                         }else if(angle + deltaX > 180){
-                            sampleClient.publish(topicAngle, new MqttMessage(String.valueOf(180).getBytes()));
                             tvAngle.setText("180");
                         }else {
                             sampleClient.publish(topicAngle, new MqttMessage(String.valueOf(angle + deltaX).getBytes()));
@@ -177,7 +175,13 @@ public class MainActivity extends AppCompatActivity {
         sbZoom.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
+                Log.w("seekbar", "zoom:" + progress);
+                try {
+                    MqttMessage zoom = new MqttMessage(String.valueOf(progress).getBytes());
+                    sampleClient.publish(topicZoom, zoom);
+                } catch (MqttException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
