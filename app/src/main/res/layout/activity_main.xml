@@ -64,7 +64,9 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
+                            android:background="@android:color/black"
                             android:text="X: "
+                            android:textColor="@android:color/white"
                             android:textSize="12sp" />
 
                         <TextView
@@ -72,7 +74,9 @@
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
+                            android:background="@android:color/black"
                             android:text="Y: "
+                            android:textColor="@android:color/white"
                             android:textSize="12sp" />
                     </LinearLayout>
 
@@ -86,6 +90,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:background="@android:color/black"
                             android:gravity="right"
                             android:text="Zoom:"
                             android:textColor="#FFFFFF"
@@ -96,6 +101,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:background="@android:color/black"
                             android:textColor="#FFFFFF"
                             android:textSize="18sp" />
                     </LinearLayout>
@@ -110,6 +116,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:background="@android:color/black"
                             android:gravity="right"
                             android:text="Angle:"
                             android:textColor="#FFFFFF"
@@ -120,6 +127,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:background="@android:color/black"
                             android:textColor="#FFFFFF"
                             android:textSize="18sp" />
 

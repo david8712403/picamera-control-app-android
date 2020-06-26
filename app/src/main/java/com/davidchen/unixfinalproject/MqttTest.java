@@ -34,13 +34,13 @@ import java.util.Objects;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mqtt_test);
-        broker = "tcp://" + Objects.requireNonNull(this.getIntent().getExtras()).getString("address");
 
         sbAngle = findViewById(R.id.angle_seekbar);
         sbZoom = findViewById(R.id.zoom_seekbar);
         tvAngle = findViewById(R.id.angle_textview);
         tvZoom = findViewById(R.id.zoom_textview);
 
+        broker = "tcp://" + Objects.requireNonNull(this.getIntent().getExtras()).getString("address");
         MemoryPersistence persistence = new MemoryPersistence();
         try {
             sampleClient = new MqttClient(broker, clientId, persistence);
