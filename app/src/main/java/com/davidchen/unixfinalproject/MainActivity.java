@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvAddress;
     private TextView tvAngle;
     private TextView tvZoom;
+    private TextView tvX;
+    private TextView tvY;
     private WebView wvWtream;
     private SeekBar sbZoom;
     private boolean pressFlag = false;
@@ -71,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
         sbZoom = findViewById(R.id.zoom_seekbar);
         tvZoom = findViewById(R.id.zoom_textview);
 
+        tvX = findViewById(R.id.x_textview);
+        tvY = findViewById(R.id.y_textview);
+
         wvWtream = findViewById(R.id.stream_webview);
         WebSettings webSettings = wvWtream.getSettings();
         webSettings.setJavaScriptEnabled(true);
@@ -81,6 +86,11 @@ public class MainActivity extends AppCompatActivity {
         wvWtream.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_MOVE) {
+                    tvX.setText("X: " + event.getX());
+                    tvY.setText("Y: " + event.getY());
+                    
+                }
                 if(event.getAction() == MotionEvent.ACTION_UP) {
                     pressFlag = false;
                     currX = event.getX();
@@ -92,6 +102,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     Log.w(tag, "ACTION_UP x:" + event.getRawX() + ", y:" + event.getRawY());
+                    tvX.setText("X: ");
+                    tvY.setText("Y: ");
                 }else if(event.getAction() == MotionEvent.ACTION_DOWN) {
                     if(!pressFlag) {
                         Log.w(tag, "ACTION_DOWN x:" + event.getRawX() + ", y:" + event.getRawY());

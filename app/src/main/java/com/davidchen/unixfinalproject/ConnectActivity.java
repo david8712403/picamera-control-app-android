@@ -16,6 +16,7 @@ public class ConnectActivity extends AppCompatActivity {
     private EditText etAddress;
     private Button btConnect;
     private Button btImgList;
+    private Button btMqtt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +24,7 @@ public class ConnectActivity extends AppCompatActivity {
         etAddress = findViewById(R.id.address_edittext);
         btConnect = findViewById(R.id.connect_button);
         btImgList = findViewById(R.id.image_list_button);
+        btMqtt    = findViewById(R.id.mqtt_button);
 
         btConnect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,6 +41,17 @@ public class ConnectActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ConnectActivity.this, ImageList.class);
+                startActivity(i);
+            }
+        });
+
+        btMqtt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ConnectActivity.this, MqttTest.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("address", String.valueOf(etAddress.getText()));
+                i.putExtras(bundle);
                 startActivity(i);
             }
         });
