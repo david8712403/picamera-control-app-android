@@ -1,9 +1,11 @@
 package com.davidchen.unixfinalproject;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +15,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private String topicMsg    = "device/message";
     private String topicZoom    = "device/zoom";
     private String topicAngle   = "device/angle";
+    private String topicScreenshot   = "device/screenshot";
     private String content      = "Message from MqttPublishSample";
     private int qos             = 0;
     private String broker       = "tcp://172.20.10.3";
@@ -61,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     private int angle = 0;
     private float wvHeight;
     private float wvWidth;
-    private final int wvWidthSize = 60;
+    private final int wvWidthSize = 40;
     private float startX = 0;
     private int deltaX = 0;
     private int prevX = 0;
@@ -142,8 +146,8 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         if(angle + deltaX < 0) {
                             tvAngle.setText("0");
-                        }else if(angle + deltaX > 180){
-                            tvAngle.setText("180");
+                        }else if(angle + deltaX > 170){
+                            tvAngle.setText("170");
                         }else {
                             sampleClient.publish(topicAngle, new MqttMessage(String.valueOf(angle + deltaX).getBytes()));
                             tvAngle.setText(String.valueOf(angle + deltaX));
@@ -158,8 +162,8 @@ public class MainActivity extends AppCompatActivity {
                     tvY.setText("Y: ");
                     if(angle + deltaX < 0) {
                         angle = 0;
-                    }else if(angle + deltaX > 180){
-                        angle = 180;
+                    }else if(angle + deltaX > 170){
+                        angle = 170;
                     }else {
                         angle += deltaX;
                     }
@@ -201,8 +205,35 @@ public class MainActivity extends AppCompatActivity {
                 LocalDateTime now = LocalDateTime.now();
                 System.out.println(dtf.format(now));
                 myRef.setValue(dtf.format(now));
-//                deviceScreenshotRef.setValue(true);
+                Log.w("seekbar", "screenshot: true");
+                try {
+
+                    MqttMessage screenshot = new MqttMessage(String.valueOf(true).getBytes());
+                    sampleClient.publish(topicScreenshot, screenshot);
+                } catch (MqttException e) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setTitle("Error");
+                    builder.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    e.printStackTrace();
+                }
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        try {
+            sampleClient.disconnect();
+        } catch (MqttException e) {
+            e.printStackTrace();
+        }
     }
 }

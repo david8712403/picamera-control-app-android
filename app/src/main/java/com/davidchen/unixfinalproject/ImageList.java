@@ -65,7 +65,7 @@ public class ImageList extends AppCompatActivity {
         tvPopupTime = findViewById(R.id.popup_time_textview);
         ivPopup = findViewById(R.id.popup_imageview);
 
-        Query query = db.getReference().child("device").child("images").orderByChild("createAt");
+        Query query = db.getReference().child("device").child("images").orderByChild("createAt").limitToLast(5);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
