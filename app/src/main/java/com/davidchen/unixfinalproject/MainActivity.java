@@ -3,7 +3,6 @@ package com.davidchen.unixfinalproject;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.os.Build;
@@ -15,7 +14,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -52,10 +50,6 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference myRef;
     private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
     private Button btScreenshot;
-    private Button btLeft;
-    private Button btRight;
-    private TextView tvName;
-    private TextView tvAddress;
     private TextView tvAngle;
     private TextView tvZoom;
     private TextView tvX;
@@ -102,8 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
         btScreenshot = findViewById(R.id.screenshot_button);
         myRef = db.getReference("test");
-
-        tvName = findViewById(R.id.screenshots_name_textview);
+        
         tvAngle = findViewById(R.id.angle_textview);
         tvAngle.setText(String.valueOf(angle));
         sbZoom = findViewById(R.id.zoom_seekbar);
@@ -181,6 +174,7 @@ public class MainActivity extends AppCompatActivity {
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 Log.w("seekbar", "zoom:" + progress);
                 try {
+                    tvZoom.setText(String.valueOf(progress));
                     MqttMessage zoom = new MqttMessage(String.valueOf(progress).getBytes());
                     sampleClient.publish(topicZoom, zoom);
                 } catch (MqttException e) {
