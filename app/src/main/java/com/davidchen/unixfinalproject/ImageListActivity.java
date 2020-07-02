@@ -40,7 +40,7 @@ import java.util.ArrayList;
 
 
 
-public class ImageList extends AppCompatActivity {
+public class ImageListActivity extends AppCompatActivity {
 
     final String tag = "ImageList.java";
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
@@ -80,7 +80,7 @@ public class ImageList extends AppCompatActivity {
                     Log.w(tag, d.child("name").getValue().toString());
                     s.add(0, new Screenshot(name, createAt, url));
                 }
-                adapter = new ListAdapter(ImageList.this, s);
+                adapter = new ListAdapter(ImageListActivity.this, s);
                 lvImage.setAdapter(adapter);
                 lvImage.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -105,7 +105,7 @@ public class ImageList extends AppCompatActivity {
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(ImageList.this, "Image failed to load", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ImageListActivity.this, "Image failed to load", Toast.LENGTH_SHORT).show();
                                 }
                             });
                         } catch (IOException e) {
@@ -188,7 +188,7 @@ public class ImageList extends AppCompatActivity {
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(ImageList.this, "Image failed to load", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ImageListActivity.this, "Image failed to load", Toast.LENGTH_SHORT).show();
                     }
                 });
             } catch (IOException e) {

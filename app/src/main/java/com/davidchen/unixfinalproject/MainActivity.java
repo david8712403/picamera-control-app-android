@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
         btScreenshot = findViewById(R.id.screenshot_button);
         myRef = db.getReference("test");
-        
+
         tvAngle = findViewById(R.id.angle_textview);
         tvAngle.setText(String.valueOf(angle));
         sbZoom = findViewById(R.id.zoom_seekbar);

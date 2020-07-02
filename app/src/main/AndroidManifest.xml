@@ -15,7 +15,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MqttTest"></activity>
         <activity
-            android:name=".ImageList"
+            android:name=".ImageListActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ConnectActivity"
