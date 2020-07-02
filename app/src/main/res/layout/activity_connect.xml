@@ -14,7 +14,7 @@
         android:ems="10"
         android:hint="address"
         android:inputType="textPersonName"
-        android:text="172.17.5.207"
+        android:text="192.168.0.17"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,4 +38,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/connect_button" />
+
+    <Button
+        android:id="@+id/mqtt_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="mqtt"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_list_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>
