@@ -36,15 +36,15 @@ public class MainActivity extends AppCompatActivity {
     private final String tag = "David";
 
     MqttClient sampleClient = null;
-    private final String MQTT_TAG = "mqtt";
-    private String topicMsg    = "device/message";
-    private String topicZoom    = "device/zoom";
-    private String topicAngle   = "device/angle";
-    private String topicScreenshot   = "device/screenshot";
-    private String content      = "Message from MqttPublishSample";
-    private int qos             = 0;
-    private String broker       = "tcp://172.20.10.3";
-    private String clientId     = "JavaSample";
+    private final String MQTT_TAG   = "mqtt";
+    private String topicMsg         = "device/message";
+    private String topicZoom        = "device/zoom";
+    private String topicAngle       = "device/angle";
+    private String topicScreenshot  = "device/screenshot";
+    private String content          = "Message from MqttPublishSample";
+    private int qos                 = 0;
+    private String broker           = "tcp://172.20.10.3";//replace to your broker ip.
+    private String clientId         = "JavaSample";
 
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
     private DatabaseReference myRef;
