@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private String topicScreenshot  = "device/screenshot";
     private String content          = "Message from MqttPublishSample";
     private int qos                 = 0;
-    private String broker           = "tcp://172.20.10.3";//replace to your broker ip.
+    private String broker           = "tcp://140.124.73.217";//replace to your broker ip.
     private String clientId         = "JavaSample";
 
     private FirebaseDatabase db = FirebaseDatabase.getInstance();
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        broker = "tcp://" + Objects.requireNonNull(this.getIntent().getExtras()).getString("address");
+//        broker = "tcp://" + Objects.requireNonNull(this.getIntent().getExtras()).getString("address");
         MemoryPersistence persistence = new MemoryPersistence();
         try {
             sampleClient = new MqttClient(broker, clientId, persistence);
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
         wvStream.setWebViewClient(new WebViewClient());
         Bundle b = this.getIntent().getExtras();
-        wvStream.loadUrl("http://" + b.getString("address") + ":8000/index.html");
+        wvStream.loadUrl(b.getString("address"));
 
         wvStream.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
             @Override
